@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saccheri Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-icon">📐</div>
+      <div>
+        <h1>Saccheri Explorer</h1>
+        <p>Explore how geometry changes angles and parallelism</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-page="home">🏠 Home</button>
+      <button class="nav-btn" data-page="explore">🌍 Explore</button>
+      <button class="nav-btn" data-page="challenge">🎯 Challenge</button>
+      <button class="nav-btn" data-page="parallel">∥ Parallel Lab</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="card hero">
+        <div class="hero-icon">📐</div>
+        <h2>Welcome to the Saccheri Explorer</h2>
+        <p class="creator">Created by <strong>Khairisya Damia</strong></p>
+        <p>
+          Don't just look at a Saccheri quadrilateral.
+          <strong>Explore it.</strong>
+        </p>
+        <p class="muted">
+          Change the geometry, adjust the model, and observe what happens to
+          the summit angles.
+        </p>
+        <button class="primary-button" id="startButton">Start Exploring →</button>
+      </div>
+
+      <div class="grid three">
+        <article class="case-card euclidean">
+          <span class="case-icon">▭</span>
+          <h3>Euclidean</h3>
+          <p class="angle">α = 90°</p>
+          <p>Right-angle summit hypothesis</p>
+        </article>
+
+        <article class="case-card elliptic">
+          <span class="case-icon">◒</span>
+          <h3>Elliptic</h3>
+          <p class="angle">α &gt; 90°</p>
+          <p>Obtuse-angle summit hypothesis</p>
+        </article>
+
+        <article class="case-card hyperbolic">
+          <span class="case-icon">⌢</span>
+          <h3>Hyperbolic</h3>
+          <p class="angle">α &lt; 90°</p>
+          <p>Acute-angle summit hypothesis</p>
+        </article>
+      </div>
+
+      <div class="card definition">
+        <h2>What is a Saccheri Quadrilateral?</h2>
+        <p>
+          A Saccheri quadrilateral has two equal legs perpendicular to the base.
+          The two opposite summit angles are equal.
+        </p>
+        <div class="definition-row">
+          <div><strong>AB</strong><span>Base</span></div>
+          <div><strong>AD = BC</strong><span>Equal legs</span></div>
+          <div><strong>∠A = ∠B = 90°</strong><span>Base angles</span></div>
+          <div><strong>∠C = ∠D = α</strong><span>Summit angles</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE -->
+    <section id="explore" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">INTERACTIVE MODEL</span>
+        <h2>Explore the Saccheri Quadrilateral</h2>
+        <p>Select a geometry and observe the summit-angle behaviour.</p>
+      </div>
+
+      <div class="geometry-buttons">
+        <button class="geometry-btn active" data-geometry="euclidean">Euclidean</button>
+        <button class="geometry-btn" data-geometry="elliptic">Elliptic</button>
+        <button class="geometry-btn" data-geometry="hyperbolic">Hyperbolic</button>
+      </div>
+
+      <div class="card canvas-card">
+        <canvas id="saccheriCanvas" width="900" height="500"></canvas>
+      </div>
+
+      <div class="measurements">
+        <div class="measurement-card">
+          <span>Geometry</span>
+          <strong id="geometryValue">Euclidean</strong>
+        </div>
+        <div class="measurement-card">
+          <span>Summit angle α</span>
+          <strong id="angleValue">90°</strong>
+        </div>
+        <div class="measurement-card">
+          <span>Summit type</span>
+          <strong id="typeValue">Right</strong>
+        </div>
+      </div>
+
+      <div class="card controls-card">
+        <h3>Adjust the model</h3>
+
+        <label>
+          <span>Base length <b id="baseLabel">300</b></span>
+          <input id="baseSlider" type="range" min="180" max="500" value="300" />
+        </label>
+
+        <label>
+          <span>Leg length <b id="heightLabel">170</b></span>
+          <input id="heightSlider" type="range" min="100" max="260" value="170" />
+        </label>
+
+        <label>
+          <span>Curvature <b id="curvatureLabel">0</b></span>
+          <input id="curvatureSlider" type="range" min="-100" max="100" value="0" />
+        </label>
+
+        <label class="checkbox-row">
+          <input id="measurementToggle" type="checkbox" checked />
+          <span>Show measurements</span>
+        </label>
+      </div>
+
+      <div class="card explanation">
+        <h3 id="explanationTitle">Euclidean geometry</h3>
+        <p id="explanationText">
+          In Euclidean geometry, the summit angles are 90°, so the Saccheri
+          quadrilateral becomes a rectangle.
+        </p>
+      </div>
+
+      <div class="observation">
+        <strong>💡 Observe:</strong>
+        The construction keeps the two base angles at 90°. What changes is the
+        behaviour of the summit angles.
+      </div>
+    </section>
+
+    <!-- CHALLENGE -->
+    <section id="challenge" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">PREDICT BEFORE YOU SEE</span>
+        <h2>🎯 Summit Angle Challenge</h2>
+        <p>In hyperbolic geometry, what happens to the summit angles?</p>
+      </div>
+
+      <div class="card challenge-card">
+        <div class="challenge-visual">📐</div>
+        <h3>Choose your prediction</h3>
+
+        <div class="answer-grid">
+          <button class="answer-btn" data-answer="equal">α = 90°</button>
+          <button class="answer-btn" data-answer="greater">α &gt; 90°</button>
+          <button class="answer-btn" data-answer="less">α &lt; 90°</button>
+        </div>
+
+        <div id="challengeFeedback" class="feedback hidden"></div>
+      </div>
+
+      <div class="card reasoning-card">
+        <h3>Mathematical reasoning</h3>
+        <div class="equation">
+          90° + 90° + α + α &lt; 360°
+        </div>
+        <div class="equation">
+          180° + 2α &lt; 360°
+        </div>
+        <div class="equation final-equation">
+          <strong>α &lt; 90°</strong>
+        </div>
+        <p>
+          A hyperbolic quadrilateral has an angle sum less than 360°.
+          Therefore, the equal summit angles of a Saccheri quadrilateral are acute.
+        </p>
+      </div>
+    </section>
+
+    <!-- PARALLEL LAB -->
+    <section id="parallel" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">PARALLEL POSTULATE</span>
+        <h2>∥ Parallel Lab</h2>
+        <p>Compare how many non-intersecting geodesics can pass through a point.</p>
+      </div>
+
+      <div class="card parallel-card">
+        <div class="parallel-buttons">
+          <button class="parallel-btn active" data-parallel="euclidean">Euclidean</button>
+          <button class="parallel-btn" data-parallel="elliptic">Elliptic</button>
+          <button class="parallel-btn" data-parallel="hyperbolic">Hyperbolic</button>
+        </div>
+
+        <canvas id="parallelCanvas" width="900" height="430"></canvas>
+
+        <div id="parallelInfo" class="parallel-info">
+          <h3>Euclidean geometry</h3>
+          <p>Exactly one parallel line can pass through a point outside a line.</p>
+        </div>
+      </div>
+
+      <div class="parallel-summary grid three">
+        <div class="mini-card">
+          <strong>Euclidean</strong>
+          <span>1 parallel</span>
+        </div>
+        <div class="mini-card">
+          <strong>Elliptic</strong>
+          <span>0 parallels</span>
+        </div>
+        <div class="mini-card">
+          <strong>Hyperbolic</strong>
+          <span>More than 1</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Saccheri Explorer · An interactive mathematical learning model</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
